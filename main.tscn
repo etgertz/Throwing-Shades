@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://blf7fm1y6yuvj"]
+
+[ext_resource type="PackedScene" uid="uid://fv2epucrf2my" path="res://Scenes/ColorCircle.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cvin7ef18218x" path="res://Values.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://drapd406wquin" path="res://Scenes/ValueCircle.tscn" id="4_1bvp3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MatchColor" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(559, 334)
+
+[node name="Values" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_h2yge")
+valueCircle = ExtResource("4_1bvp3")

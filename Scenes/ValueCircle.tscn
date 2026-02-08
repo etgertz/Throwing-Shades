@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://drapd406wquin"]
+
+[ext_resource type="Texture2D" uid="uid://bwaw48u7a6ohp" path="res://Assets/Circle.png" id="1_a8ujq"]
+[ext_resource type="Script" uid="uid://b3r30vf83op4s" path="res://Scripts/value_circle.gd" id="1_ch84h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ch84h"]
+radius = 248.29015
+
+[node name="ValueCircle" type="Node2D"]
+script = ExtResource("1_ch84h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("1_a8ujq")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+scale = Vector2(0.25, 0.25)
+shape = SubResource("CircleShape2D_ch84h")
