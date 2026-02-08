@@ -39,4 +39,5 @@ func updateValueRing():
 		set_color(i)
 		
 func set_color(i):
-	valuesArray[i].modulate = Color.from_hsv(0, 0, Global.get_lum(i,numVals))
+	valuesArray[i].get_node("Sprite2D").modulate = Color.from_hsv(0, 0, Global.get_lum(i,numVals))
+	valuesArray[i].val = Global.get_lum(i,numVals)

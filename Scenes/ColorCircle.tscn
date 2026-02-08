@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://fv2epucrf2my"]
+[gd_scene load_steps=3 format=3 uid="uid://fv2epucrf2my"]
 
 [ext_resource type="Texture2D" uid="uid://bwaw48u7a6ohp" path="res://Assets/Circle.png" id="1_7baqv"]
+[ext_resource type="Script" uid="uid://cegm7d8v61v7n" path="res://Scenes/color_circle.gd" id="1_8xgh2"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_8xgh2")
 
 [node name="ColorCircle" type="Sprite2D" parent="."]
 scale = Vector2(0.18, 0.18)
