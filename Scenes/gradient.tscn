@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c32pwvromlbdo"]
+
+[ext_resource type="Script" uid="uid://xwmkf2jwgty0" path="res://gradient.gd" id="1_o368a"]
+
+[sub_resource type="Gradient" id="Gradient_o368a"]
+colors = PackedColorArray(1, 1, 0.7058824, 1, 0.9607843, 0.8352941, 0.99607843, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i54un"]
+gradient = SubResource("Gradient_o368a")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_o368a")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 760.0
+offset_top = -232.0
+offset_right = 2076.4856
+offset_bottom = 611.50415
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_i54un")

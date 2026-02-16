@@ -10,14 +10,15 @@ var highscores = []
 var values = 6
 var currentVal
 var active = 1
+var cuurentColor = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start = false
 
 func get_lum(i,num):
-	var t = (i + 2.25) / (num+2)  # midpoint formula
-	var gamma = 1.8;
+	var t = (i + 2.25) / (num+2)  # midpoint formula 2.25,2
+	var gamma = 1.5;#1.8
 	var luminance = pow(t,gamma);
 	return luminance
 

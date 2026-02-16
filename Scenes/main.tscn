@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://blf7fm1y6yuvj"]
+
+[ext_resource type="PackedScene" uid="uid://fv2epucrf2my" path="res://Scenes/ColorCircle.tscn" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://cvin7ef18218x" path="res://Scripts/Values.gd" id="2_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://drapd406wquin" path="res://Scenes/ValueCircle.tscn" id="3_kry3j"]
+[ext_resource type="PackedScene" uid="uid://cti0lifi34wqf" path="res://Scenes/window.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://c32pwvromlbdo" path="res://Scenes/gradient.tscn" id="5_kry3j"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BG" parent="." instance=ExtResource("5_kry3j")]
+
+[node name="WindowFrame" parent="." instance=ExtResource("4_jjvhh")]
+z_index = 3
+
+[node name="MatchColor" parent="." instance=ExtResource("1_8gbba")]
+z_index = 5
+position = Vector2(559, 334)
+
+[node name="Values" type="Control" parent="."]
+z_index = 4
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_jjvhh")
+valueCircle = ExtResource("3_kry3j")

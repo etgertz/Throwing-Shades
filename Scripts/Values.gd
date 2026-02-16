@@ -2,7 +2,7 @@ extends Control
 
 @export var valueCircle: PackedScene
 var numVals
-var radius = 200
+var radius = 230
 var valuesArray: Array = []
 
 # Called when the node enters the scene tree for the first time.
@@ -13,9 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(Global.values != numVals):
-		numVals = Global.values
-		updateValueRing();
+	updateValueRing();
 	
 
 func updateValueRing():

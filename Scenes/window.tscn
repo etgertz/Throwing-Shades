@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cti0lifi34wqf"]
+
+[ext_resource type="Script" uid="uid://hgsvrn326t4t" path="res://Scripts/Cathedraw.gd" id="1_efths"]
+
+[node name="Node2D" type="Node2D"]
+z_index = -2
+script = ExtResource("1_efths")

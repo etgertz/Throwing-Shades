@@ -10,14 +10,19 @@ config_version=5
 
 [application]
 
-config/name="Throwing Shade"
-run/main_scene="res://main.tscn"
+config/name="Throwing Shades"
+run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+
+[display]
+
+window/size/viewport_width=650
+window/size/viewport_height=900
 
 [input]
 
