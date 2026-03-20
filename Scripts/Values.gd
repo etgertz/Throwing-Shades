@@ -34,8 +34,5 @@ func updateValueRing():
 		var pos = get_viewport_rect().size/2 + Vector2(radius*sin(angle), radius*cos(angle))
 		var val = valuesArray[i]
 		val.position = pos
-		set_color(i)
+		valuesArray[i].set_color(i, numVals)
 		
-func set_color(i):
-	valuesArray[i].get_node("Sprite2D").modulate = Color.from_hsv(0, 0, Global.get_lum(i,numVals))
-	valuesArray[i].val = Global.get_lum(i,numVals)

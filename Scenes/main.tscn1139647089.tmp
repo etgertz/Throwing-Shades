@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://blf7fm1y6yuvj"]
+[gd_scene load_steps=7 format=3 uid="uid://blf7fm1y6yuvj"]
 
 [ext_resource type="PackedScene" uid="uid://fv2epucrf2my" path="res://Scenes/ColorCircle.tscn" id="1_8gbba"]
 [ext_resource type="Script" uid="uid://cx67gdmvolttc" path="res://Scenes/Game.gd" id="1_21xkr"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://drapd406wquin" path="res://Scenes/ValueCircle.tscn" id="3_kry3j"]
 [ext_resource type="PackedScene" uid="uid://cti0lifi34wqf" path="res://Scenes/window.tscn" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://c32pwvromlbdo" path="res://Scenes/gradient.tscn" id="5_kry3j"]
-[ext_resource type="Script" uid="uid://n3b2epii57wf" path="res://Scenes/Score.gd" id="7_6bp64"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_21xkr")
@@ -28,8 +27,3 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_jjvhh")
 valueCircle = ExtResource("3_kry3j")
-
-[node name="Score" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("7_6bp64")
