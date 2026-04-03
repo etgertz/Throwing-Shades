@@ -1,18 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://drapd406wquin"]
+[gd_scene load_steps=7 format=3 uid="uid://drapd406wquin"]
 
-[ext_resource type="Texture2D" uid="uid://cpjy4virlqqtf" path="res://Assets/Circle.png" id="1_a8ujq"]
 [ext_resource type="Script" uid="uid://b3r30vf83op4s" path="res://Scripts/value_circle.gd" id="1_ch84h"]
+[ext_resource type="Texture2D" uid="uid://cpjy4virlqqtf" path="res://Assets/Circle.png" id="2_xr20e"]
 [ext_resource type="Texture2D" uid="uid://t7rh52cokdij" path="res://Assets/CircleBorder.png" id="3_xr20e"]
+[ext_resource type="AudioStream" uid="uid://cwfsirnr5h5ej" path="res://Assets/audio/Bottle Break.wav" id="4_a8v57"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ch84h"]
 radius = 248.29015
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_le2gl"]
+random_pitch = 1.61
+streams_count = 1
+stream_0/stream = ExtResource("4_a8v57")
 
 [node name="ValueCircle" type="Node2D"]
 script = ExtResource("1_ch84h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.7086773
 scale = Vector2(0.18, 0.18)
-texture = ExtResource("1_a8ujq")
+texture = ExtResource("2_xr20e")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
 scale = Vector2(4, 4)
@@ -23,8 +30,14 @@ shape = SubResource("CircleShape2D_ch84h")
 
 [node name="Outline" type="Sprite2D" parent="."]
 z_index = -1
-scale = Vector2(0.197, 0.197)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_xr20e")
+
+[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+pitch_scale = 0.88
+
+[node name="BreakSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_le2gl")
 
 [connection signal="input_event" from="Sprite2D/Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_entered"]

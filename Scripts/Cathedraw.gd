@@ -11,14 +11,24 @@ func _ready() -> void:
 	pass
 	
 func _draw():
+	if(Global.values == 4):
+		#do add in extra arch bits between
+		pass
+	elif(Global.values == 6):
+		#add in upside down arches in each 'petal'
+		pass
 	draw_arch(600,450,0,get_viewport_rect().size/2,outerWidth,c1)
 	draw_circle(get_viewport_rect().size/2,300,c1,false,outerWidth)#circle window
 	draw_circle(get_viewport_rect().size/2,54.5,c1,false,outerWidth)#center circle
 	draw_line(Vector2(get_viewport_rect().size.x/2-300,get_viewport_rect().size.y/2),Vector2(get_viewport_rect().size.x/2-300,get_viewport_rect().size.y/2+600),c1,outerWidth)
 	draw_line(Vector2(get_viewport_rect().size.x/2+300,get_viewport_rect().size.y/2),Vector2(get_viewport_rect().size.x/2+300,get_viewport_rect().size.y/2+600),c1,outerWidth)
 	
+	var center = get_viewport_rect().size/2
 	for i in range(Global.values):
 		draw_spire(i*TAU/Global.values,c1,outerWidth) #i*TAU/Global.values
+		var angle = (i+.5)*TAU/Global.values
+		var p1 = Vector2(cos(angle-PI/2), sin(angle-PI/2))
+		#draw_arch(140,110,angle, center+p1*-290, outerWidth, c1)
 	
 	draw_arch(600,450,0,get_viewport_rect().size/2,innerWidth,c2)
 	#draw_arch(150,118,0,Vector2(get_viewport_rect().size.x/2,get_viewport_rect().size.y/2-180),innerWidth,c2)
@@ -29,12 +39,20 @@ func _draw():
 	draw_line(Vector2(get_viewport_rect().size.x/2+300,get_viewport_rect().size.y/2),Vector2(get_viewport_rect().size.x/2+300,get_viewport_rect().size.y/2+600),c2,innerWidth)
 	for i in range(Global.values):
 		draw_spire(i*TAU/Global.values,c2,innerWidth)
+		var angle = (i+.5)*TAU/Global.values
+		var p1 = Vector2(cos(angle-PI/2), sin(angle-PI/2))
+		#draw_arch(140,110,angle, center+p1*-290, innerWidth, c2)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
+	if(Global.values == 8 || Global.values == 4):
+		$Window8.visible = true
+		$Window6.visible = false
+	else:
+		$Window8.visible = false
+		$Window6.visible = true
 
 func draw_arch(W: float, H: float, rot: float, center: Vector2, thickness: float, color: Color):
 	var half_w = W * 0.5
@@ -72,11 +90,14 @@ func draw_arch(W: float, H: float, rot: float, center: Vector2, thickness: float
 
 func draw_spire(angle: float, color: Color, w: float):
 	var dist = 180
+	var inWidth = 140 
+	var archStart = 190 #190 for 6
+	var archHeight = 298-archStart #298 for 6
 	var center = get_viewport_rect().size/2
 	var p1 = Vector2(cos(angle-PI/2), sin(angle-PI/2))
-	draw_arch(150,118,angle,center+p1*180,w,color)
+	draw_arch(inWidth,archHeight,angle,center+p1*archStart,w,color)
 	draw_circle(center+p1*230,54.5,color,false,w)
-	draw_spire_defined(center,angle,54.5,30,180,150,color,w)
+	draw_spire_defined(center,angle,54.5,30,archStart,inWidth,color,w)
 
 
 func draw_spire_defined(

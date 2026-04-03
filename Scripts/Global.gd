@@ -6,13 +6,17 @@ var canGuess
 var start = false
 var paused = false
 var score = 0
-var highscores = []
+var highscore = [0,0,0,0,0,0,0,0,0]
+#var highscores = []
 var values = 6
 #var currentVal
 var difficulty = 1 #1-3
 #var active = 1
 var currentColor = 0;
+var color = 4
 var colors: PackedColorArray
+var round = 1
+var totGuess = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,30 +28,19 @@ func get_lum(i,num):#update using normailsed values??
 	var gamma = 1.5;#1.8
 	var luminance = pow(t,gamma);
 	return luminance
-
-#func check_answer(value):
-#	print(value," = ",currentVal)
-#	if(value == currentVal):
-#		#score += time.round(.5)*25 or something
-#		return true
-#	lives-=1
-#	if(lives==0):
-#		game_over()
-#	return false
 	
 func game_over():
 	print("you lost");
+	addHighscore();
+	get_tree().change_scene_to_file("res://Scenes/highscore.tscn")
 	canGuess=false;
-	
-#func set_val(newVal):
-#	currentVal = newVal
-#	canGuess = true
 
 func getRandomColor()->Color:
 	#something to do with round to get start (aka what colors can be picked) => start hold color selected
-	var start = 0;
-	currentColor = randi_range(0,values-1);
-	return getColor(start, currentColor);
+	var lastColor = currentColor
+	while(lastColor == currentColor):
+		currentColor = randi_range(0,values-1);
+	return getColor(color, currentColor);
 
 #restructure 
 func getColor(x: int, y: int)->Color:
@@ -58,8 +51,56 @@ func getColor(x: int, y: int)->Color:
 		pos=32;
 	pos += (values*x)+y;
 	return colors[pos]
+
+func addHighscore():
+	var temp = 3*(difficulty-1)+(values/2)-2
+	if(score>highscore[temp]):
+		highscore[temp] = score
+	#if(highscores.is_empty()):
+	#	highscores[0] = score
+
+func replay():
+	score = 0;
+	lives = 3
+	if(difficulty==3):
+		lives=1
+	round = 1
+	totGuess = 0
+	color = 4
 	
+func reset():
+	lives = 3
+	start = false
+	paused = false
+	score = 0
+	values = 6
+	difficulty = 1
+	currentColor = 0;
+	round = 1
+	totGuess = 0
+	color=4
+
 signal guessed()
+
+func check_answer(guess, time):
+	totGuess+=1
+	var dist = abs(currentColor-guess);
+	if(dist==0):
+		score+=round*20*snappedf(time,0.5);#replace with timer-based score system
+		#do any updates (visible/color) to this item if necessary for given events in play
+	elif(dist==1&&difficulty==1):
+		lives-=.5;
+		score+=round*10*snappedf(time,0.5);#replace with timer based calc
+	else:
+		lives-=1;
+	if(lives<=0):
+		game_over();
+	
+	if(totGuess>11 && totGuess%20==0):
+		color+=1;
+		color%=8
+		if(color==2):#yellow not great
+			color+=1
 
 func initializeColors():
 	colors = PackedColorArray([

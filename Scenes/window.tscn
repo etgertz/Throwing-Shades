@@ -1,7 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cti0lifi34wqf"]
+[gd_scene load_steps=4 format=3 uid="uid://cti0lifi34wqf"]
 
 [ext_resource type="Script" uid="uid://hgsvrn326t4t" path="res://Scripts/Cathedraw.gd" id="1_efths"]
+[ext_resource type="Texture2D" uid="uid://bnuti5tmukpjv" path="res://Assets/winow8.1.png" id="2_0xhjo"]
+[ext_resource type="Texture2D" uid="uid://m5rj67urfnl0" path="res://Assets/winow6.png" id="3_30sqi"]
 
 [node name="Node2D" type="Node2D"]
-z_index = -2
+visibility_layer = 2
+z_index = -8
 script = ExtResource("1_efths")
+
+[node name="Window8" type="TextureRect" parent="."]
+offset_right = 650.0
+offset_bottom = 900.0
+texture = ExtResource("2_0xhjo")
+
+[node name="Window6" type="TextureRect" parent="."]
+offset_right = 650.0
+offset_bottom = 900.0
+texture = ExtResource("3_30sqi")
