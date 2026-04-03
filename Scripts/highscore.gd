@@ -17,20 +17,20 @@ func _process(delta: float) -> void:
 
 
 func _on_play_again_pressed() -> void:
-	$Effects.play()
-	await get_tree().create_timer(.4).timeout
-	$Effects.stop()
+	Fade.fadeOut()
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 	Global.replay()
 
 
 func _on_main_menu_pressed() -> void:
-	$Effects.play()
-	await get_tree().create_timer(.4).timeout
-	$Effects.stop()
+	Fade.fadeOut()
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 	Global.reset()
 
 
 func _on_draw() -> void:
 	pass # Replace with function body.
+
+
+func _on_tree_entered() -> void:
+	Fade.fadeIn()

@@ -13,9 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_button_pressed() -> void:
-	$Effects.play()
-	await get_tree().create_timer(.4).timeout
-	$Effects.stop()
+	Fade.fadeOut()
 	get_tree().change_scene_to_file("res://Scenes/game.tscn")
 
 
@@ -42,3 +40,7 @@ func _on_d_area_mouse_entered() -> void:
 	
 func _on_d_area_mouse_exited() -> void:
 	$Difficulty/InfoD/DInfoLabel.visible = false
+
+
+func _on_tree_entered() -> void:
+	Fade.fadeIn()

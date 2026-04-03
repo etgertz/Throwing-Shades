@@ -9,9 +9,8 @@ var score = 0
 var highscore = [0,0,0,0,0,0,0,0,0]
 #var highscores = []
 var values = 6
-#var currentVal
-var difficulty = 1 #1-3
-#var active = 1
+var difficulty = 1
+var lastColor
 var currentColor = 0;
 var color = 4
 var colors: PackedColorArray
@@ -30,14 +29,14 @@ func get_lum(i,num):#update using normailsed values??
 	return luminance
 	
 func game_over():
-	print("you lost");
+	canGuess=false;
+	Fade.fadeOutQuiet()
 	addHighscore();
 	get_tree().change_scene_to_file("res://Scenes/highscore.tscn")
-	canGuess=false;
 
 func getRandomColor()->Color:
 	#something to do with round to get start (aka what colors can be picked) => start hold color selected
-	var lastColor = currentColor
+	lastColor = currentColor
 	while(lastColor == currentColor):
 		currentColor = randi_range(0,values-1);
 	return getColor(color, currentColor);
@@ -80,23 +79,26 @@ func reset():
 	totGuess = 0
 	color=4
 
-signal guessed()
+signal guessed(guess)
 
 func check_answer(guess, time):
 	totGuess+=1
+	if(totGuess%20==0):
+		round+=1
 	var dist = abs(currentColor-guess);
 	if(dist==0):
-		score+=round*20*snappedf(time,0.5);#replace with timer-based score system
-		#do any updates (visible/color) to this item if necessary for given events in play
+		score+=20*snappedf(time,0.5);
 	elif(dist==1&&difficulty==1):
+		Fade.heartBreak()
 		lives-=.5;
-		score+=round*10*snappedf(time,0.5);#replace with timer based calc
+		score+=10*snappedf(time,0.5);
 	else:
+		Fade.heartBreak()
 		lives-=1;
 	if(lives<=0):
 		game_over();
 	
-	if(totGuess>11 && totGuess%20==0):
+	if(totGuess%20==0 || (totGuess%5==0 && (round%15 == 0 || round%15 >= 11))):
 		color+=1;
 		color%=8
 		if(color==2):#yellow not great

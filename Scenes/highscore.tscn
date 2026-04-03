@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7vbt36tt8qgm"]
+[gd_scene load_steps=5 format=3 uid="uid://b7vbt36tt8qgm"]
 
 [ext_resource type="Script" uid="uid://dnrklshbt5nqm" path="res://Scripts/highscore.gd" id="1_521p5"]
 [ext_resource type="Texture2D" uid="uid://dpcussd2j8l6b" path="res://Assets/goldBorder2.png" id="2_cun3r"]
 [ext_resource type="AudioStream" uid="uid://6ab68gdntlmi" path="res://Assets/audio/Crystal Cavern.ogg" id="3_cun3r"]
-[ext_resource type="AudioStream" uid="uid://bqvsxok2bal78" path="res://Assets/audio/Menu Soundpack 3.wav" id="4_1g2ie"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7xjlr"]
 
@@ -81,10 +80,7 @@ stream = ExtResource("3_cun3r")
 autoplay = true
 parameters/looping = false
 
-[node name="Effects" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_1g2ie")
-autoplay = true
-
 [connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="pressed" from="Play Again" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

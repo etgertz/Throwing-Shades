@@ -1,5 +1,6 @@
 extends Node2D
 
+var id
 var num
 var inside=false
 var hover = preload("res://Assets/audio/beep.wav")
@@ -19,7 +20,7 @@ func _process(delta: float) -> void:
 		$Effects.play()
 		Global.canGuess = false
 		Global.check_answer(num, $"../Timer".time_left)
-		Global.guessed.emit()
+		Global.guessed.emit(id)
 
 
 func _on_area_2d_mouse_entered() -> void:
@@ -36,4 +37,8 @@ func _on_area_2d_mouse_exited() -> void:
 
 func set_color(i:float, numVals:float):
 	$Sprite2D.modulate = Color.from_hsv(0, 0, Global.get_lum(i,numVals))
+	num = i
+
+func setColor(c: Color, i:float):
+	$Sprite2D.modulate = c
 	num = i
